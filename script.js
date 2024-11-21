@@ -1,18 +1,33 @@
-function twoDigit(num) {
-  let ret;
-  if( num < 10 ) 
-    ret = "0" + num; 
-  else 
-    ret = num; 
-  return ret;
-}
-function showClock() {
-  let nowTime = new Date();
-  let nowHour = twoDigit( nowTime.getHours() );
-  let nowMin  = twoDigit( nowTime.getMinutes() );
-  let nowSec  = twoDigit( nowTime.getSeconds() );
-  let msg = "今の時刻：" + nowHour + ":" + nowMin + ":" + nowSec;
-  document.getElementById("realtime").innerHTML = msg;
-}
+const express = require('express');
+const http = require('http');
+const { Server } = require('socket.io');
 
-setInterval('showClock()',1000);
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
+
+app.use(express.static('public'));
+
+io.on('connection', (socket) => {
+    console.log('User connected:', socket.id);
+
+    socket.on('offer', (offer) => {
+        socket.broadcast.emit('offer', offer);
+    });
+
+    socket.on('answer', (answer) => {
+        socket.broadcast.emit('answer', answer);
+    });
+
+    socket.on('ice-candidate', (candidate) => {
+        socket.broadcast.emit('ice-candidate', candidate);
+    });
+
+    socket.on('disconnect', () => {
+        console.log('User disconnected:', socket.id);
+    });
+});
+
+server.listen(3000, () => {
+    console.log('Server running on http://localhost:3000');
+});
