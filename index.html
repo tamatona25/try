@@ -1,24 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+<!Doctype html>
+<html lang="ja">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>バイナリ変換サイト</title>
-  <link rel="stylesheet" href="styles.css">
+ <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+ <script src="https://cdn.mlkcca.com/v0.6.0/milkcocoa.js"></script>
+ <script src="chat.js"></script>
+
+ <style>
+  ul > li:first-child {
+   color: black;
+   font-size: 25px;
+  }
+  ul > li:nth-child(2n) {
+   color: blue;
+  }
+  ul > li:nth-child(2n):before {
+   content:"ユーザー名："
+  }
+ </style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>バイナリ変換ツール</h1>
-    <div class="converter">
-      <textarea id="input" placeholder="テキストまたはバイナリを入力してください"></textarea>
-      <div class="buttons">
-        <button onclick="convertToBinary()">テキストをバイナリに変換</button>
-        <button onclick="convertToText()">バイナリをテキストに変換</button>
-      </div>
-      <textarea id="output" placeholder="結果がここに表示されます" readonly></textarea>
-      <button class="copy-button" onclick="copyToClipboard()">コピー</button>
-    </div>
+ <div>
+  <!-- 投稿者 -->
+  <div>
+   <p>ユーザ名</p>
+   <textarea name="" id="jsi-name" cols="10" rows="1"></textarea>
   </div>
-  <script src="script.js"></script>
+
+  <!-- メッセージを打ち込む部分 -->
+  <div>
+   <p>内容</p>
+   <textarea name="" id="jsi-msg" cols="30" rows="4"></textarea>
+  </div>
+ </div>
+
+ <!-- メッセージを送る部分 -->
+ <button name="button" id="jsi-button">send message!</button>
+
+ <!-- チャット内容が動的に生成される部分 -->
+ <ul id="jsi-board" style="list-style:none;">
+  <li>〜チャット内容〜</li>
+ </ul>
 </body>
+
 </html>
