@@ -19,3 +19,16 @@ function convertToText() {
     document.getElementById('output').value = 'バイナリ形式が正しくありません';
   }
 }
+
+function copyToClipboard() {
+  const output = document.getElementById('output');
+  output.select(); // テキストエリア全体を選択
+  output.setSelectionRange(0, 99999); // モバイル対応
+  navigator.clipboard.writeText(output.value)
+    .then(() => {
+      alert('コピーしました！');
+    })
+    .catch(() => {
+      alert('コピーに失敗しました');
+    });
+}
