@@ -4,7 +4,7 @@ const responseDiv = document.getElementById('response');
 
 // Airtableトークン情報
 const AIRTABLE_TOKEN = 'patCyANjnXOJBqqG3'; // ここにトークンを入れる
-const BASE_ID = 'chatbot';                     // ここにベースIDを入れる
+const BASE_ID = 'appfQK4zxEVkueiU3';                     // ここにベースIDを入れる
 const TABLE_NAME = 'chatbot1';                      // テーブル名
 
 // フォーム送信時の処理
@@ -16,7 +16,7 @@ form.addEventListener('submit', async (event) => {
     const message = document.getElementById('message').value;
 
     // Airtable APIエンドポイント
-    const url = `https://api.airtable.com/v0/chatbot/chatbot1`;
+    const url = `https://api.airtable.com/v0/appfQK4zxEVkueiU3/chatbot1`;
 
     // APIリクエストの送信
     try {
